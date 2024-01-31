@@ -1,0 +1,67 @@
+1. index.html
+	- 여행지 조회 및 선택
+		- Endpoint : `GET /destinations`
+			-> 사용자가 선택할 수 있는 여행지 목록 반환.
+		- Endpoint : `POST /destinations/choose`
+		- Body : `{ "destinationId" : "1", "date" : "2024-01-20", "destination" : "Busan" }`
+			-> 사용자가 선택한 여행지와 날짜 정보를 받음.
+2. signUp.html & signIn.html
+	- 회원가입
+		- Endpoint : `POST /users/signup`
+		- Body : `{ "userID" : "username", "password" : "password", "email" : "email@exaple.com" }`
+			-> 새로운 사용자 등록.
+	- 아이디 중복확인
+		- Endpoint : `GET /users/check`
+		- Body : `{ "available" : true }`
+			-> 중복된 아이디 판별.
+	- 로그인
+		- Endpoint : `POST /users/login`
+		- Body : `{ "userID" : "username", "password" : "password" }`
+			-> 사용자의 로그인. 성공 시 세션 토큰 반환.
+	- 로그아웃
+		- Endpoint : `POST /users/logout`
+			-> 사용자의 로그아웃
+3. chooseTravel.html
+	- 도시 별 커뮤니티 정보 
+		- Endpoint : `GET /community/{cityId}`
+			-> 선택된 도시에 대한 커뮤니티 정보 반환.
+	- 도시 지도 정보 조회
+		- Endpoint : `GET /maps/{cityId}`
+			-> 선택된 도시에 대한 지도 API 정보를 반환
+	- 마크다운 저장
+		- Endpoint : `POST /markdown`
+		- Body : `{ "userId" : "1", "title" : mMarkdown title", "content" : "markdown content" }`
+			-> 사용자가 작성한 마크다운을 저장
+4. community.html
+	- 커뮤니티 게시글 작성
+		- Endpoint : `POST /community/{communityID}/posts`
+		- Body : `{ "userID" : "1", "title" : "community title", "data" : "2024-01-20", "content" : "community content" }`
+			-> 해당 커뮤니티에 게시글 작성
+	- 커뮤니티 게시글 수정
+		- Endpoint : `PUT /community/{communityID}/posts/{postID}`
+		- Body : `{ "userID" : "1", "title" : "community title", "data" : "2024-01-20", "content" : "community content" }`
+			-> 해당 커뮤니티의 특정 게시글 내용 수정
+	- 커뮤니티 게시글 삭제
+		- Endpoint : `DELETE /community/{communityDI}/pposts/{postID}`
+			-> 해당 커뮤니티의 특정 게시글 삭제
+	- 커뮤니티 게시글 조회
+		- Endpoint : `GET /posts/{communityId}`
+			-> 해당 커뮤니티의 게시글 조회
+	- 프로필 활성화 사용자와 소통
+		- Endpoint : `POST /messages`
+		- Body : `{ "senderId": "1", "receiverId": "2", "message": "Hello" }`
+			-> 활성화된 프로필 사용자 간 메시지 통신
+5. path.html
+	- 최적 경로 조회
+		- Endpoint : `GET /paths/optimal`
+		- Body: `{ "startPoint" : "location1", "endPoint" : "location2" }`
+			-> 사용자의 출발/도착지 정보를 바탕으로 최적 경로 제공
+	- 관련 정보 조회
+		- Endpoint : `GET /information/nearby`
+		- Body : `{ "location" : "location" }`
+			-> 경로 근처의 식당, 관광지 정보 로드
+6. userRating.html
+	- 리뷰 및 평점 제출
+		- Endpoint : `POST /ratings`
+		- Body : `{ "userId" : "1", "placeId" : "1", "rating" : 4.5, "review" : "Great place" }`
+			-> 사용자 리뷰 및 평점 제출
